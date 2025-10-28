@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from passlib.context import CryptContext
-from fastapi import HTTPException, status, Depends
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import HTTPException, status, Depends,Request
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import User
@@ -13,7 +12,6 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
 # ------------------- PASSWORD UTILS -------------------
@@ -47,22 +45,26 @@ def get_user_by_email(db: Session, email: str):
     return db.execute(select(User).where(User.email == email)).scalar_one_or_none()
 
 
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+
+def get_current_user(request: Request, db: Session = Depends(get_db)):
+    token = request.cookies.get("access_token")
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Missing authentication cookie",
+        )
 
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email = payload.get("sub")
         if email is None:
-            raise credentials_exception
+            raise HTTPException(status_code=401, detail="Invalid token payload")
     except JWTError:
-        raise credentials_exception
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
 
     user = get_user_by_email(db, email)
-    if user is None:
-        raise credentials_exception
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
     return user
+

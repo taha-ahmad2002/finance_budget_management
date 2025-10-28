@@ -1,7 +1,7 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, Response
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-
+from fastapi.middleware.cors import CORSMiddleware
 from backend.schemas import TransferOut, IncomeOut
 from database import Base, engine
 from models import User, Expense, Income, Transfer
@@ -36,12 +36,19 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
 
 
 @app.post("/login", response_model=Token)
-def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login( response: Response,form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = get_user_by_email(db, form_data.username)
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Incorrect username or password")
 
     token = create_access_token(data={"sub": user.email})
+    response.set_cookie(
+        key="access_token",
+        value=token,
+        httponly=True,
+        secure=True,      # use True in production (HTTPS only)
+        samesite="lax"    # "strict" or "none" for cross-site
+    )
     return {"access_token": token, "token_type": "bearer"}
 
 
@@ -175,3 +182,11 @@ def delete_transfer(transfer_id: int, db: Session = Depends(get_db), current_use
     db.commit()
     return {"message": "Income deleted successfully"}
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # your Next.js app URL
+    allow_credentials=True,                   # allow cookies
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
