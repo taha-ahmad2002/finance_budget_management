@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 import {useState} from "react";
 import {API} from "@/app/lib/api";
 
@@ -20,7 +20,7 @@ export default function SignupForm() {
         e.preventDefault();
         try {
             await API.post("/signup", {email, password});
-            await router.push('/login');
+            router.push('/login');
         }
         catch {
             alert("Signup failed");
@@ -71,7 +71,7 @@ export default function SignupForm() {
                                 name="password"
                                 placeholder="Enter password"
                                 required
-                                minLength={6}
+                                minLength={3}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />

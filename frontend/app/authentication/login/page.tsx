@@ -8,7 +8,7 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
 import {useState} from "react";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 import {API} from "@/app/lib/api";
 
 
@@ -16,15 +16,16 @@ export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+
     async function handleLogin(e: { preventDefault: () => void; }) {
         e.preventDefault();
         const formData = new URLSearchParams();
-        formData.append('email', email);
+        formData.append('username', email);
         formData.append('password', password);
         const res= await API.post('/login', formData);
         if (res.status === 200) {
             alert("Login successful!");
-            await router.push('/dashboard');
+            router.push('/dashboard');
         }
     }
 
@@ -72,7 +73,7 @@ export default function LoginForm() {
                                 placeholder="Enter password"
                                 required
                                 value={password}
-                                minLength={6}
+                                minLength={3}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
