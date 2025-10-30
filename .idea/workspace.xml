@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="frontend in the middle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,7 @@
       <workItem from="1761625860977" duration="17871000" />
       <workItem from="1761716956563" duration="95000" />
       <workItem from="1761725146715" duration="1159000" />
-      <workItem from="1761800146133" duration="14558000" />
+      <workItem from="1761800146133" duration="15560000" />
     </task>
     <task id="LOCAL-00001" summary="frontend in the middle">
       <option name="closed" value="true" />
