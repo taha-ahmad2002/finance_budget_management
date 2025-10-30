@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="name check">
-      <change afterPath="$PROJECT_DIR$/frontend/app/dashboard/(overview)/loading.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/dashboard/(overview)/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/dashboard/expenses/create/page.tsx" afterDir="false" />
+    <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="frontend in the middle">
+      <change afterPath="$PROJECT_DIR$/frontend/app/authentication/login/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/app/authentication/signup/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/app/dashboard/incomes/create/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/app/lib/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Finance and budget management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Finance and budget management.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/customers/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/expenses/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/invoices/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/incomes/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/expenses/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/expenses/create/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +37,12 @@
     &quot;assignee&quot;: &quot;taha-ahmad2002&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/taha-ahmad2002/finance_budget_management&quot;,
-    &quot;accountId&quot;: &quot;d110830b-8684-4e0e-990c-66e778f3fcec&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/taha-ahmad2002/finance_budget_management",
+    "accountId": "d110830b-8684-4e0e-990c-66e778f3fcec"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -56,6 +57,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -73,6 +75,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\PycharmProjects\finance_budget_management\frontend" />
       <recent name="C:\Users\HP\PycharmProjects\finance_budget_management\frontend\app\dashboard\(overview)" />
       <recent name="C:\Users\HP\PycharmProjects\finance_budget_management\frontend\app\dashboard" />
     </key>
@@ -101,7 +104,10 @@
       <workItem from="1761458822472" duration="503000" />
       <workItem from="1761460179278" duration="5060000" />
       <workItem from="1761546942468" duration="16102000" />
-      <workItem from="1761625860977" duration="17130000" />
+      <workItem from="1761625860977" duration="17871000" />
+      <workItem from="1761716956563" duration="95000" />
+      <workItem from="1761725146715" duration="1159000" />
+      <workItem from="1761800146133" duration="8737000" />
     </task>
     <task id="LOCAL-00001" summary="frontend in the middle">
       <option name="closed" value="true" />
@@ -111,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761567642587</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="frontend in the middle">
+      <option name="closed" value="true" />
+      <created>1761652874080</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761652874080</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

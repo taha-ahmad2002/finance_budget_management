@@ -2,10 +2,9 @@ from fastapi import FastAPI, Depends, HTTPException, Response
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
-from backend.schemas import TransferOut, IncomeOut
 from database import Base, engine
 from models import User, Expense, Income, Transfer
-from schemas import UserCreate, UserOut, ExpenseCreate, ExpenseOut, Token, IncomeCreate, TransferCreate
+from schemas import UserCreate, UserOut, ExpenseCreate, ExpenseOut, Token, IncomeCreate, TransferCreate, IncomeOut, TransferOut
 from auth import (
     get_db,
     get_password_hash,
@@ -107,13 +106,13 @@ def create_income(income: IncomeCreate, db: Session = Depends(get_db), current_u
     return new_income
 
 
-@app.get("/incomes/")
+@app.get("/incomes/",response_model=list[IncomeOut])
 def get_incomes(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    incomes = db.query(Expense).filter(Income.user_id == current_user.id).all()
+    incomes = db.query(Income).filter(Income.user_id == current_user.id).all()
     return incomes
 
 
-@app.put("/incomes/{income_id}")
+@app.put("/incomes/{income_id}",response_model=IncomeOut)
 def update_income(income_id: int, income_data: IncomeCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     income = db.query(Income).filter(Income.id == income_id, Income.user_id == current_user.id).first()
     if not income:
@@ -143,7 +142,7 @@ def delete_income(income_id: int, db: Session = Depends(get_db), current_user: U
 # ------------------- Transfer ROUTES -------------------
 @app.post("/transfers/",response_model=TransferOut)
 def create_transfer(transfer: TransferCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    new_transfer = Transfer(amount=transfer.amount, description=transfer.description, user_id=current_user.id,from_=transfer.from_,to=transfer.to,created_at=transfer.created_at)
+    new_transfer = Transfer(amount=transfer.amount, description=transfer.description, user_id=current_user.id,from_=transfer.from_,to=transfer.to,created_at=transfer.created_at,note=transfer.note)
     db.add(new_transfer)
     db.commit()
     db.refresh(new_transfer)
@@ -157,14 +156,14 @@ def get_transfers(db: Session = Depends(get_db), current_user: User = Depends(ge
 
 
 @app.put("/transfers/{transfer_id}",response_model=TransferOut)
-def update_transfer(transfer_id: int, transfer_data: IncomeCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+def update_transfer(transfer_id: int, transfer_data: TransferCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     transfer = db.query(Transfer).filter(Transfer.id == transfer_id, Transfer.user_id == current_user.id).first()
     if not transfer:
         raise HTTPException(status_code=404, detail="Transfer not found or unauthorized")
     transfer.amount = transfer_data.amount
     transfer.description = transfer_data.description
     transfer.created_at = transfer_data.created_at
-    transfer.to_ = transfer_data.to_
+    transfer.to = transfer_data.to
     transfer.from_ = transfer_data.from_
     transfer.note=transfer_data.note
     db.commit()
@@ -180,8 +179,17 @@ def delete_transfer(transfer_id: int, db: Session = Depends(get_db), current_use
 
     db.delete(transfer)
     db.commit()
-    return {"message": "Income deleted successfully"}
+    return {"message": "Transfer deleted successfully"}
 
+@app.post("/logout")
+def logout(response: Response):
+    response.delete_cookie(
+        key="access_token",
+        httponly=True,
+        secure=True,   # match your login cookie settings
+        samesite="lax"
+    )
+    return {"message": "Logged out successfully"}
 
 app.add_middleware(
     CORSMiddleware,

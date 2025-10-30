@@ -37,8 +37,8 @@ class ExpenseOut(ExpenseBase):
     account: str
     category: str
     description: str
-    id:str
-    user_id:str
+    id:int
+    user_id:int
     class Config:
         orm_mode = True
 
@@ -63,8 +63,8 @@ class IncomeOut(IncomeBase):
     account: str
     category: str
     description: str
-    id: str
-    user_id: str
+    id: int
+    user_id: int
     class Config:
         orm_mode = True
 
@@ -89,8 +89,8 @@ class TransferOut(TransferBase):
     from_: str
     to:str
     description: str
-    id: str
-    user_id: str
+    id: int
+    user_id: int
     class Config:
         orm_mode = True
 

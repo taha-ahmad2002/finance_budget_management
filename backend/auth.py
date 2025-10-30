@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta, timezone
+
+from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 from fastapi import HTTPException, status, Depends,Request
@@ -13,6 +15,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 # ------------------- PASSWORD UTILS -------------------
 def get_password_hash(password):
