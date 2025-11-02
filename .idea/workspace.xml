@@ -5,36 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="frontend in the middle">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/highlightedFiles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/ui/incomes/create-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/ui/incomes/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Finance and budget management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Finance and budget management.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/finance.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/finance.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/authentication/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/authentication/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/authentication/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/authentication/signup/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/expenses/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/expenses/create/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/expenses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/expenses/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/incomes/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/incomes/create/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/incomes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/incomes/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/lib/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/lib/definitions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/definitions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/dashboard/sidenav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/dashboard/sidenav.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/breadcrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/breadcrumbs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/buttons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/buttons.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/create-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/create-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/edit-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/edit-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/pagination.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/status.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/status.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/invoices/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,11 +70,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ahmad\WebstormProjects\finance_budget_management" />
       <recent name="C:\Users\ahmad\WebstormProjects\finance_budget_management\frontend" />
       <recent name="C:\Users\ahmad\WebstormProjects\finance_budget_management\frontend\app" />
       <recent name="C:\Users\HP\PycharmProjects\finance_budget_management\frontend" />
       <recent name="C:\Users\HP\PycharmProjects\finance_budget_management\frontend\app\dashboard\(overview)" />
-      <recent name="C:\Users\HP\PycharmProjects\finance_budget_management\frontend\app\dashboard" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -139,7 +111,7 @@
       <workItem from="1761977631769" duration="750000" />
       <workItem from="1761978417107" duration="58000" />
       <workItem from="1762000553846" duration="7373000" />
-      <workItem from="1762061959218" duration="17123000" />
+      <workItem from="1762061959218" duration="23919000" />
     </task>
     <task id="LOCAL-00001" summary="frontend in the middle">
       <option name="closed" value="true" />
@@ -181,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761820055824</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="frontend in the middle">
+      <option name="closed" value="true" />
+      <created>1762084811634</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762084811634</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

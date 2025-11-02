@@ -34,7 +34,7 @@ export async function createExpense(expense) {
 }
 
 export async function updateExpense(expense) {
-    await API.put("/expenses/", expense).then(r => r.data);
+    await API.put(`/expenses/${expense.id}`, expense).then(r => r.data);
 }
 
 export async function deleteExpense(expenseId) {

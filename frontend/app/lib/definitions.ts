@@ -88,14 +88,15 @@ export type FormattedCustomersTable = {
   total_paid: string;
 };
 
-export type CategoryField = {
-  id: string;
-  name: string;
-};
 
-export type InvoiceForm = {
-  id: string;
-  customer_id: string;
+
+export type ExpenseForm = {
+  id: number;
+  user_id: number;
   amount: number;
-  status: 'pending' | 'paid';
+  category: string;
+  created_at: string;
+  note: string;
+  account: string;
+  description: string;
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import {InvoiceForm} from '@/app/lib/definitions';
+import {ExpenseForm} from '@/app/lib/definitions';
 import {
   CheckIcon,
   ClockIcon,
@@ -9,12 +9,22 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
+import {updateExpense} from "@/app/lib/api";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
+
+function getFormattedDate() {
+    const date = new Date();
+    const iso = date.toISOString(); // e.g. 2025-10-31T12:03:25.969Z
+    return iso.substring(0, iso.length - 1) + '000'; // remove 'Z', add 000
+}
 
 export default function EditInvoiceForm({
-  invoice,
+  expense,
 }: {
-  invoice: InvoiceForm;
+  expense: ExpenseForm;
 }) {
+
     const accounts=[
         {
             id: 1,
@@ -47,6 +57,35 @@ export default function EditInvoiceForm({
             name: "loan payment"
         }
     ];
+
+
+    const router = useRouter();
+    const [category,setCategory]=useState("");
+    const [amount,setAmount]=useState("");
+    const [description,setDescription]=useState("");
+    const [note,setNote]=useState("");
+    const [account,setAccount]=useState("");
+
+    async function handleSubmit(e: { preventDefault: () => void; }) {
+        e.preventDefault();
+        try {
+            const created_at =getFormattedDate();
+            await updateExpense({
+                id: expense.id,
+                category: category.toString(),         // Ensure correct type
+                account: account.toString(),           // or rename to account_id if backend expects that
+                amount: parseFloat(amount),            // Ensure float
+                description,
+                note,
+                created_at,
+            });
+            console.log('Expense successfully created');
+            router.push('/dashboard/expenses');
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
   return (
     <form>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
@@ -60,10 +99,11 @@ export default function EditInvoiceForm({
               id="accounts"
               name="accounts"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-              defaultValue={invoice.customer_id}
+              defaultValue={expense.user_id}
+              onChange={e=>setAccount(e.target.value)}
             >
               <option value="" disabled>
-                Select a customer
+                Select an account
               </option>
               {accounts.map((account) => (
                 <option key={account.id} value={account.id}>
@@ -87,7 +127,8 @@ export default function EditInvoiceForm({
                       id="category"
                       name="category"
                       className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                      defaultValue={invoice.customer_id}
+                      defaultValue={expense.user_id}
+                      onChange={event => setCategory(event.target.value)}
                   >
                       <option value="" disabled>
                           Select a customer
@@ -115,8 +156,9 @@ export default function EditInvoiceForm({
                 name="amount"
                 type="number"
                 step="0.01"
-                defaultValue={invoice.amount}
+                defaultValue={expense.amount}
                 placeholder="Enter USD amount"
+                onChange={e => setAmount(e.target.value)}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -124,15 +166,60 @@ export default function EditInvoiceForm({
           </div>
         </div>
 
+          {/* Invoice note */}
+          <div className="mb-4">
+              <label htmlFor="note" className="mb-2 block text-sm font-medium">
+                  Write a note
+              </label>
+              <div className="relative mt-2 rounded-md">
+                  <div className="relative">
+                      <input
+                          id="note"
+                          name="note"
+                          type="text"
+                          step="0.01"
+                          defaultValue={expense.note}
+                          placeholder="Enter a note"
+                          className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                          onChange={(e) => setNote(e.target.value)}
+                      />
+                      <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+              </div>
+          </div>
+
+
+          {/* Invoice description */}
+          <div className="mb-4">
+              <label htmlFor="description" className="mb-2 block text-sm font-medium">
+                  Write a description
+              </label>
+              <div className="relative mt-2 rounded-md">
+                  <div className="relative">
+                      <input
+                          id="note"
+                          name="note"
+                          type="text"
+                          step="0.01"
+                          defaultValue={expense.description}
+                          placeholder="Enter a description"
+                          onChange={(e) => setDescription(e.target.value)}
+                          className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      />
+                      <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+              </div>
+          </div>
+
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
-          href="/dashboard/invoices"
+          href="/dashboard/expenses"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
           Cancel
         </Link>
-        <Button type="submit">Edit Invoice</Button>
+        <Button onSubmit={handleSubmit} type="submit">Edit Invoice</Button>
       </div>
     </form>
   );
