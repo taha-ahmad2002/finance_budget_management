@@ -7,34 +7,38 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
-import {useRouter} from "next/navigation";
-import {useState} from "react";
-import {API} from "@/app/lib/api";
-
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { signup } from '@/app/lib/api';
 
 export default function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+    const [message, setMessage] = useState('');
+
     async function handleSignup(e: { preventDefault: () => void; }) {
-        e.preventDefault();
+        e.preventDefault(); // 🔥 prevent form from reloading the page
         try {
-            await API.post("/signup", {email, password});
-            router.push('/login');
-        }
-        catch {
-            alert("Signup failed");
+            await signup(email, password);
+            setMessage('Signup successful! You can now log in.');
+            router.push('/authentication/login'); // redirect to login page
+        } catch (err) {
+            console.error(err);
+            // @ts-ignore
+            setMessage(err.response?.data?.detail || 'Signup failed');
         }
     }
-
 
     return (
         <form onSubmit={handleSignup} className="space-y-3">
             <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
                 <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-                   Create Account
+                    Create Account
                 </h1>
+
                 <div className="w-full">
+                    {/* Email */}
                     <div>
                         <label
                             className="mb-3 mt-5 block text-xs font-medium text-gray-900"
@@ -56,6 +60,8 @@ export default function SignupForm() {
                             <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                         </div>
                     </div>
+
+                    {/* Password */}
                     <div className="mt-4">
                         <label
                             className="mb-3 mt-5 block text-xs font-medium text-gray-900"
@@ -79,10 +85,12 @@ export default function SignupForm() {
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="redirectTo"  />
-                <Button className="mt-4 w-full" >
-                    Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+
+                <Button type="submit" className="mt-4 w-full">
+                    Sign up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
                 </Button>
+
+                {message && <p className="mt-2 text-sm text-gray-700">{message}</p>}
             </div>
         </form>
     );

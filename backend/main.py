@@ -14,11 +14,20 @@ from auth import (
     get_user_by_email,
 )
 
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
+
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Todo List API with SQLAlchemy + JWT")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # your Next.js app URL
+    allow_credentials=True,                   # allow cookies
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ------------------- AUTH ROUTES -------------------
 @app.post("/signup", response_model=dict)
@@ -39,16 +48,17 @@ def login( response: Response,form_data: OAuth2PasswordRequestForm = Depends(), 
     user = get_user_by_email(db, form_data.username)
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Incorrect email or password")
-
-    token = create_access_token(data={"sub": user.email})
+    access_token = create_access_token(data={"sub": user.email})
     response.set_cookie(
         key="access_token",
-        value=token,
+        value=access_token,
         httponly=True,
-        secure=True,      # use True in production (HTTPS only)
-        samesite="lax"    # "strict" or "none" for cross-site
+        secure=True,
+        max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        samesite="none"  # "strict" or "none" for cross-site
     )
-    return {"access_token": token, "token_type": "bearer"}
+    # response.headers["Authorization"] = f"Bearer {access_token}"
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 # ------------------- Expense ROUTES -------------------
@@ -185,16 +195,7 @@ def delete_transfer(transfer_id: int, db: Session = Depends(get_db), current_use
 def logout(response: Response):
     response.delete_cookie(
         key="access_token",
-        httponly=True,
-        secure=True,   # match your login cookie settings
-        samesite="lax"
+        samesite="none",
+        secure=True,
     )
     return {"message": "Logged out successfully"}
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # your Next.js app URL
-    allow_credentials=True,                   # allow cookies
-    allow_methods=["*"],
-    allow_headers=["*"],
-)

@@ -1,9 +1,8 @@
 from datetime import datetime, timedelta, timezone
-
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt, JWTError
+from jose import jwt, JWTError,ExpiredSignatureError
 from passlib.context import CryptContext
-from fastapi import HTTPException, status, Depends,Request
+from fastapi import HTTPException, status, Depends, Cookie
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import User
@@ -16,6 +15,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
 
 # ------------------- PASSWORD UTILS -------------------
 def get_password_hash(password):
@@ -48,26 +48,26 @@ def get_user_by_email(db: Session, email: str):
     return db.execute(select(User).where(User.email == email)).scalar_one_or_none()
 
 
-
-def get_current_user(request: Request, db: Session = Depends(get_db)):
-    token = request.cookies.get("access_token")
-    if not token:
+def get_current_user(access_token: str = Cookie(None), db: Session = Depends(get_db)):
+    print(access_token)
+    if not access_token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Missing authentication cookie",
         )
 
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(access_token, SECRET_KEY, algorithms=[ALGORITHM])
         email = payload.get("sub")
         if email is None:
             raise HTTPException(status_code=401, detail="Invalid token payload")
+    except ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired — please log in again.")
     except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid or expired token")
+        raise HTTPException(status_code=401, detail="Invalid token — please log in again.")
 
     user = get_user_by_email(db, email)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
     return user
-
