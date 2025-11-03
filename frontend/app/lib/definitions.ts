@@ -10,12 +10,6 @@ export type User = {
   password: string;
 };
 
-export type Customer = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-};
 
 export type Expense = {
   id: number;
@@ -37,6 +31,17 @@ export type Income = {
     note: string;
     account: string;
     category: string;
+};
+
+export type Transfer = {
+    id: number;
+    user_id: number;
+    amount: number;
+    created_at: string;
+    description: string;
+    note: string;
+    to: string;
+    from_: string;
 };
 
 export type Revenue = {
@@ -99,4 +104,26 @@ export type ExpenseForm = {
   note: string;
   account: string;
   description: string;
+};
+
+export type IncomeForm = {
+    id: number;
+    user_id: number;
+    amount: number;
+    category: string;
+    created_at: string;
+    note: string;
+    account: string;
+    description: string;
+};
+
+export type TransferForm = {
+    id: number;
+    user_id: number;
+    amount: number;
+    from_: string;
+    created_at: string;
+    note: string;
+    to: string;
+    description: string;
 };

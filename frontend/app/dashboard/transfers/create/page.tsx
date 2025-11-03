@@ -1,4 +1,4 @@
-import Form from '@/app/ui/expenses/create-form';
+import Form from '@/app/ui/transfers/create-form';
 import Breadcrumbs from '@/app/ui/breadcrumbs';
 
 export default async function Page() {
@@ -8,10 +8,10 @@ export default async function Page() {
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Expenses', href: '/dashboard/expenses' },
+                    { label: 'Transfers', href: '/dashboard/transfers' },
                     {
-                        label: 'Create Expense',
-                        href: '/dashboard/expenses/create',
+                        label: 'Create Transfer',
+                        href: '/dashboard/transfers/create',
                         active: true,
                     },
                 ]}

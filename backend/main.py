@@ -151,7 +151,10 @@ def delete_income(income_id: int, db: Session = Depends(get_db), current_user: U
     db.commit()
     return {"message": "Income deleted successfully"}
 
-
+@app.get("/incomes/{income_id}",response_model=IncomeOut)
+def get_income_by_id(income_id:int, db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+    income=db.query(Income).filter(Income.id==income_id, Income.user_id == current_user.id).first()
+    return income
 
 
 # ------------------- Transfer ROUTES -------------------
@@ -204,3 +207,9 @@ def logout(response: Response):
         secure=True,
     )
     return {"message": "Logged out successfully"}
+
+
+@app.get("/transfers/{transfer_id}",response_model=TransferOut)
+def get_transfer_by_id(transfer_id:int, db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+    transfer=db.query(Transfer).filter(Transfer.id==transfer_id, Transfer.user_id == current_user.id).first()
+    return transfer

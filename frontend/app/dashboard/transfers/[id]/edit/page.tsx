@@ -2,46 +2,46 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import Form from '@/app/ui/expenses/edit-form';
+import Form from '@/app/ui/transfers/edit-form';
 import Breadcrumbs from '@/app/ui/breadcrumbs';
-import { getExpenseById } from '@/app/lib/api';
+import {getTransferById} from '@/app/lib/api';
 
 export default function Page() {
     const { id } = useParams(); // ✅ get dynamic route param
-    const [expense, setExpense] = useState(null);
+    const [transfer, setTransfer] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchExpense() {
+        async function fetchTransfer() {
             try {
-                const data = await getExpenseById(Number(id));
-                setExpense(data);
+                const data = await getTransferById(Number(id));
+                setTransfer(data);
             } catch (error) {
-                console.error('Failed to fetch expense:', error);
+                console.error('Failed to fetch transfer:', error);
             } finally {
                 setLoading(false);
             }
         }
 
-        if (id) fetchExpense();
+        if (id) fetchTransfer();
     }, [id]);
 
     if (loading) return <p>Loading...</p>;
-    if (!expense) return <p>Expense not found</p>;
+    if (!transfer) return <p>Transfer not found</p>;
 
     return (
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Expenses', href: '/dashboard/expenses' },
+                    { label: 'Transfers', href: '/dashboard/transfers' },
                     {
-                        label: 'Edit Expense',
-                        href: `/dashboard/expenses/${id}/edit`,
+                        label: 'Edit Transfer',
+                        href: `/dashboard/transfers/${id}/edit`,
                         active: true,
                     },
                 ]}
             />
-            <Form expense={expense} />
+            <Form transfer={transfer} />
         </main>
     );
 }

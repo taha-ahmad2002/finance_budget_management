@@ -23,7 +23,7 @@ export default function LoginForm() {
         try {
             await login(email, password);
             setMessage('Login successful!');
-            router.push('/dashboard'); // redirect to your dashboard
+            router.replace('/dashboard'); // redirect to your dashboard
         } catch (err) {
             console.error(err);
             // @ts-ignore

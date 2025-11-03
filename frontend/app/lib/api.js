@@ -53,7 +53,34 @@ export const getIncomes = async () => {
     const res = await API.get("/incomes/", { withCredentials: true });
     return res.data;
 };
-
+export async function updateIncome(income) {
+    await API.put(`/incomes/${income.id}`, income).then(r => r.data);
+}
+export const getIncomeById = async (id) => {
+    const res = await API.get(`/incomes/${id}`);
+    return res.data;
+}
 export async function deleteIncome(incomeId) {
     await API.delete(`/incomes/${incomeId}`);
+}
+
+
+
+export async function createTransfer(transfer) {
+    await API.post("/transfers/", transfer).then(r => r.data);
+}
+export const getTransfers = async () => {
+    const res = await API.get("/transfers/", { withCredentials: true });
+    return res.data;
+};
+
+export const getTransferById = async (id) => {
+    const res = await API.get(`/transfers/${id}`);
+    return res.data;
+}
+export async function updateTransfer(transfer) {
+    await API.put(`/transfers/${transfer.id}`, transfer).then(r => r.data);
+}
+export async function deleteTransfer(transferId) {
+    await API.delete(`/transfers/${transferId}`);
 }

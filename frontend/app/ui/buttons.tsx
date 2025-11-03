@@ -12,6 +12,16 @@ export function CreateExpense() {
     </Link>
   );
 }
+export function UpdateTransfer({ id }: { id: number }) {
+    return (
+        <Link
+            href={`/dashboard/transfers/${id}/edit`}
+            className="rounded-md border p-2 hover:bg-gray-100"
+        >
+            <PencilIcon className="w-5" />
+        </Link>
+    );
+}
 
 
 export function UpdateExpense({ id }: { id: number }) {
@@ -26,7 +36,16 @@ export function UpdateExpense({ id }: { id: number }) {
 }
 
 
-
+export function UpdateIncome({ id }: { id: number }) {
+    return (
+        <Link
+            href={`/dashboard/incomes/${id}/edit`}
+            className="rounded-md border p-2 hover:bg-gray-100"
+        >
+            <PencilIcon className="w-5" />
+        </Link>
+    );
+}
 
 
 export function CreateIncome() {
@@ -41,15 +60,19 @@ export function CreateIncome() {
     );
 }
 
-export function UpdateIncome({ id }: { id: number }) {
+
+
+export function CreateTransfer() {
     return (
         <Link
-            href={`/dashboard/incomes/${id}/edit`}
-            className="rounded-md border p-2 hover:bg-gray-100"
+            href="/dashboard/transfers/create"
+            className="flex h-10 items-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
-            <PencilIcon className="w-5" />
+            <span className="hidden md:block">Create Transfer</span>{' '}
+            <PlusIcon className="h-5 md:ml-4" />
         </Link>
     );
 }
+
 
 

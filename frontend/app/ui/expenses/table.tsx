@@ -3,7 +3,7 @@ import { formatDateToLocal } from '@/app/lib/utils';
 import {Expense} from "@/app/lib/definitions";
 import { TrashIcon} from "@heroicons/react/24/outline";
 import {deleteExpense} from "@/app/lib/api";
-import { UpdateExpense } from '@/app/ui/expenses/buttons';
+import { UpdateExpense } from '@/app/ui/buttons';
 
 
 export default function Table({expenses}: {

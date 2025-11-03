@@ -70,14 +70,14 @@ export default function EditInvoiceForm({
             const created_at = getFormattedDate();
             await updateExpense({
                 id: expense.id,
-                user_id: expense.user_id,
-                category: category.toString(),
-                account: account.toString(),
-                amount: parseFloat(amount),
-                description,
-                note,
-                created_at
+                amount: amount || expense.amount,
+                description: description || expense.description,
+                note: note || expense.note,
+                category: category || expense.category,
+                account: account || expense.account,
+                created_at: getFormattedDate(),
             });
+
             console.log('Expense successfully updated');
             router.push('/dashboard/expenses');
         } catch (err) {
@@ -105,7 +105,7 @@ export default function EditInvoiceForm({
                 Select an account
               </option>
               {accounts.map((account) => (
-                <option key={account.id} value={account.id}>
+                <option key={account.id} value={account.name}>
                   {account.name}
                 </option>
               ))}
@@ -133,7 +133,7 @@ export default function EditInvoiceForm({
                           Select a category
                       </option>
                       {categories.map((cat) => (
-                          <option key={cat.id} value={cat.id}>
+                          <option key={cat.id} value={cat.name}>
                               {cat.name}
                           </option>
                       ))}
@@ -157,7 +157,7 @@ export default function EditInvoiceForm({
                 step="0.01"
                 defaultValue={expense.amount}
                 placeholder="Enter USD amount"
-                onChange={e => setAmount(e.target.value)}
+                onChange={event => setAmount(event.target.value)}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -218,7 +218,7 @@ export default function EditInvoiceForm({
         >
           Cancel
         </Link>
-        <Button type="submit">Edit Invoice</Button>
+        <Button type="submit">Edit Expense</Button>
       </div>
     </form>
   );

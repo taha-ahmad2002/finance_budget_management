@@ -2,7 +2,7 @@
 import Pagination from '@/app/ui/expenses/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/expenses/table';
-import {CreateExpense} from '@/app/ui/expenses/buttons';
+import {CreateExpense} from '@/app/ui/buttons';
 import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import {Suspense, useEffect, useState} from 'react';

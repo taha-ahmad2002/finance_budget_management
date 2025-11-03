@@ -12,7 +12,7 @@ export default function SideNav() {
     async function handleLogout() {
         try {
             await logout(); // calls FastAPI logout endpoint (clears cookie)
-            router.push('/authentication/login');
+            router.replace('/authentication/login');
         } catch (err) {
             console.error('Logout failed:', err);
         }

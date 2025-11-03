@@ -1,5 +1,5 @@
 import Form from '@/app/ui/incomes/create-form';
-import Breadcrumbs from '@/app/ui/expenses/breadcrumbs';
+import Breadcrumbs from '@/app/ui/breadcrumbs';
 
 export default async function Page() {
 
@@ -12,7 +12,7 @@ export default async function Page() {
                     {
                         label: 'Create Income',
                         href: '/dashboard/incomes/create',
-                        active: true,
+                        active: true
                     },
                 ]}
             />
