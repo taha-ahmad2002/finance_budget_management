@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="transfer, expense and income implemented">
+    <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="dasboard total count">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/(overview)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/(overview)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/transfers/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/transfers/create/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/lib/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/buttons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/buttons.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/ui/dashboard/cards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/dashboard/cards.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762165817852</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="dasboard total count">
+      <option name="closed" value="true" />
+      <created>1762169634262</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762169634262</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +236,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="frontend in the middle" />
     <MESSAGE value="transfer, expense and income implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="transfer, expense and income implemented" />
+    <MESSAGE value="dasboard total count" />
+    <option name="LAST_COMMIT_MESSAGE" value="dasboard total count" />
   </component>
 </project>
