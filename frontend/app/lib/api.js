@@ -84,3 +84,5 @@ export async function updateTransfer(transfer) {
 export async function deleteTransfer(transferId) {
     await API.delete(`/transfers/${transferId}`);
 }
+
+

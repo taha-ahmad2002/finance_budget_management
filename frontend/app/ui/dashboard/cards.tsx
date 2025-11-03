@@ -1,3 +1,4 @@
+
 import {
   BanknotesIcon,
   ClockIcon,
@@ -13,17 +14,25 @@ const iconMap = {
   total: PlusIcon,
 };
 
-export default async function CardWrapper() {
-  return (
+
+
+export default function CardWrapper({expenses, incomes, transfers}: {
+    expenses: number;
+    incomes: number;
+    transfers: number;
+}) {
+
+return (
+
     <>
       {/* NOTE: Uncomment this code in Chapter 9 */}
 
-       <Card title="Expenses" value={5} type="expenses" />
-      <Card title="Incomes" value={5} type="incomes" />
-      <Card title="Transfers" value={5} type="transfers" />
+       <Card title="Expenses" value={expenses} type="expenses" />
+      <Card title="Incomes" value={incomes} type="incomes" />
+      <Card title="Transfers" value={transfers} type="transfers" />
       <Card
         title="Total"
-        value={6}
+        value={incomes-expenses}
         type="total"
       />
     </>

@@ -16,7 +16,7 @@ export default async function Page() {
                     },
                 ]}
             />
-            <Form  />
+            <Form />
         </main>
     );
 }
