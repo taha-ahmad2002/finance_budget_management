@@ -1,9 +1,9 @@
 import InvoiceStatus from '@/app/ui/expenses/status';
 import { formatDateToLocal } from '@/app/lib/utils';
 import {Expense} from "@/app/lib/definitions";
-import {PencilIcon, TrashIcon} from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { TrashIcon} from "@heroicons/react/24/outline";
 import {deleteExpense} from "@/app/lib/api";
+import { UpdateExpense } from '@/app/ui/expenses/buttons';
 
 
 export default function Table({expenses}: {
@@ -60,13 +60,7 @@ export default function Table({expenses}: {
                                         <p className="text-sm text-gray-500">{formatDateToLocal(expense.created_at)}</p>
                                     </div>
                                     <div className="flex justify-end gap-2">
-                                        <Link
-
-                                            href="/dashboard/expenses/edit"
-                                            className="rounded-md border p-2 hover:bg-gray-100"
-                                        >
-                                            <PencilIcon className="w-5" />
-                                        </Link>
+                                        <UpdateExpense id={expense.id}/>
 
                                         <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
                                             <span className="sr-only">Delete</span>
@@ -107,13 +101,7 @@ export default function Table({expenses}: {
                                 </td>
                                 <td className="whitespace-nowrap py-3 pl-6 pr-3 text-right">
                                     <div className="flex justify-end gap-3">
-                                        <Link
-                                            href="/dashboard/expenses"
-                                            className="rounded-md border p-2 hover:bg-gray-100"
-                                        >
-                                            <PencilIcon className="w-5" />
-                                        </Link>
-
+                                        <UpdateExpense id={expense.id}/>
                                         <button onClick={()=>deleteExpense_(expense.id)} className="rounded-md border p-2 hover:bg-gray-100">
                                             <span className="sr-only">Delete</span>
                                             <TrashIcon className="w-5" />

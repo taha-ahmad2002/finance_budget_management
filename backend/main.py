@@ -104,7 +104,10 @@ def delete_expense(expense_id: int, db: Session = Depends(get_db), current_user:
     return {"message": "Expense deleted successfully"}
 
 
-
+@app.get("/expenses/{expense_id}",response_model=ExpenseOut)
+def get_expense_by_id(expense_id:int, db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+    expense=db.query(Expense).filter(Expense.id==expense_id, Expense.user_id == current_user.id).first()
+    return expense
 
 # ------------------- Income ROUTES -------------------
 @app.post("/incomes/",response_model=IncomeOut)
@@ -147,6 +150,8 @@ def delete_income(income_id: int, db: Session = Depends(get_db), current_user: U
     db.delete(income)
     db.commit()
     return {"message": "Income deleted successfully"}
+
+
 
 
 # ------------------- Transfer ROUTES -------------------

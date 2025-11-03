@@ -2,8 +2,6 @@
 
 import {ExpenseForm} from '@/app/lib/definitions';
 import {
-  CheckIcon,
-  ClockIcon,
   CurrencyDollarIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
@@ -11,7 +9,7 @@ import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import {updateExpense} from "@/app/lib/api";
 import {useRouter} from "next/navigation";
-import {useState} from "react";
+import React, {useState} from "react";
 
 function getFormattedDate() {
     const date = new Date();
@@ -66,28 +64,29 @@ export default function EditInvoiceForm({
     const [note,setNote]=useState("");
     const [account,setAccount]=useState("");
 
-    async function handleSubmit(e: { preventDefault: () => void; }) {
-        e.preventDefault();
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault(); // ✅ prevent page reload
         try {
-            const created_at =getFormattedDate();
+            const created_at = getFormattedDate();
             await updateExpense({
                 id: expense.id,
-                category: category.toString(),         // Ensure correct type
-                account: account.toString(),           // or rename to account_id if backend expects that
-                amount: parseFloat(amount),            // Ensure float
+                user_id: expense.user_id,
+                category: category.toString(),
+                account: account.toString(),
+                amount: parseFloat(amount),
                 description,
                 note,
-                created_at,
+                created_at
             });
-            console.log('Expense successfully created');
+            console.log('Expense successfully updated');
             router.push('/dashboard/expenses');
         } catch (err) {
-            console.error(err);
+            console.error('Error updating expense:', err);
         }
     }
 
-  return (
-    <form>
+    return (
+    <form onSubmit={handleSubmit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Account Name */}
         <div className="mb-4">
@@ -99,7 +98,7 @@ export default function EditInvoiceForm({
               id="accounts"
               name="accounts"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-              defaultValue={expense.user_id}
+              defaultValue={expense.account}
               onChange={e=>setAccount(e.target.value)}
             >
               <option value="" disabled>
@@ -127,11 +126,11 @@ export default function EditInvoiceForm({
                       id="category"
                       name="category"
                       className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                      defaultValue={expense.user_id}
+                      defaultValue={expense.category}
                       onChange={event => setCategory(event.target.value)}
                   >
                       <option value="" disabled>
-                          Select a customer
+                          Select a category
                       </option>
                       {categories.map((cat) => (
                           <option key={cat.id} value={cat.id}>
@@ -219,7 +218,7 @@ export default function EditInvoiceForm({
         >
           Cancel
         </Link>
-        <Button onSubmit={handleSubmit} type="submit">Edit Invoice</Button>
+        <Button type="submit">Edit Invoice</Button>
       </div>
     </form>
   );

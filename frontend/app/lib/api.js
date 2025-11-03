@@ -29,6 +29,11 @@ export const getExpenses = async () => {
         return res.data;
 };
 
+export const getExpenseById = async (id) => {
+    const res = await API.get(`/expenses/${id}`);
+    return res.data;
+}
+
 export async function createExpense(expense) {
     await API.post("/expenses/", expense).then(r => r.data);
 }

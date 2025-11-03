@@ -14,10 +14,16 @@ export function CreateExpense() {
 }
 
 
-
-
-
-
+export function UpdateExpense({ id }: { id: number }) {
+    return (
+        <Link
+            href={`/dashboard/expenses/${id}/edit`}
+            className="rounded-md border p-2 hover:bg-gray-100"
+        >
+            <PencilIcon className="w-5" />
+        </Link>
+    );
+}
 
 
 
@@ -35,10 +41,10 @@ export function CreateIncome() {
     );
 }
 
-export function UpdateIncome({ id }: { id: string }) {
+export function UpdateIncome({ id }: { id: number }) {
     return (
         <Link
-            href="/dashboard/incomes"
+            href={`/dashboard/incomes/${id}/edit`}
             className="rounded-md border p-2 hover:bg-gray-100"
         >
             <PencilIcon className="w-5" />
@@ -46,13 +52,4 @@ export function UpdateIncome({ id }: { id: string }) {
     );
 }
 
-export function DeleteIncome({ id }: { id: string }) {
-    return (
-        <>
-            <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
-                <span className="sr-only">Delete</span>
-                <TrashIcon className="w-5" />
-            </button>
-        </>
-    );
-}
+
