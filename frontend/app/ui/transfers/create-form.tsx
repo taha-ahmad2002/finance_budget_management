@@ -13,8 +13,7 @@ import {createTransfer} from "@/app/lib/api";
 
 function getFormattedDate() {
     const date = new Date();
-    const iso = date.toISOString(); // e.g. 2025-10-31T12:03:25.969Z
-    return iso.substring(0, iso.length - 1) + '000'; // remove 'Z', add 000
+    return date.toISOString().split('T')[0];
 }
 export default function Form() {
 
@@ -141,12 +140,27 @@ export default function Form() {
                                 name="amount"
                                 type="number"
                                 step="0.01"
+                                min="0"
                                 placeholder="Enter USD amount"
+                                onChange={(event) => {
+                                    let value = event.target.value;
+
+                                    // Prevent spaces
+                                    if (value.includes(' ')) return;
+
+                                    // Prevent negative values
+                                    const num = parseFloat(value);
+                                    if (num < 0) return;
+
+                                    setAmount(value);
+                                }}
+                                onKeyDown={(e) => {
+                                    // Block spacebar key completely
+                                    if (e.key === ' ') e.preventDefault();
+                                }}
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                                required
-                                value={amount}
-                                onChange={(e) => setAmount(e.target.value)}
                             />
+
                             <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                         </div>
                     </div>
@@ -168,8 +182,12 @@ export default function Form() {
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                                 required
                                 value={note}
-                                onChange={(e) => setNote(e.target.value)}
-                            />
+                                onChange={(e) => {
+                                    let value = e.target.value.toLowerCase();
+                                    // Capitalize first letter and letter after '. '
+                                    value = value.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                                    setNote(value);
+                                }}                            />
                             <PaperClipIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                         </div>
                     </div>
@@ -191,8 +209,12 @@ export default function Form() {
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                                 required
                                 value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
+                                onChange={(e) => {
+                                    let value = e.target.value.toLowerCase();
+                                    // Capitalize first letter and letter after '. '
+                                    value = value.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                                    setDescription(value);
+                                }}                              />
                             <PaperClipIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                         </div>
                     </div>

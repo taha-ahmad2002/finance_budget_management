@@ -149,11 +149,28 @@ export default function EditInvoiceForm({
                                 name="amount"
                                 type="number"
                                 step="0.01"
+                                min="0"
                                 defaultValue={transfer.amount}
                                 placeholder="Enter USD amount"
-                                onChange={event => setAmount(event.target.value)}
+                                onChange={(event) => {
+                                    let value = event.target.value;
+
+                                    // Prevent spaces
+                                    if (value.includes(' ')) return;
+
+                                    // Prevent negative values
+                                    const num = parseFloat(value);
+                                    if (num < 0) return;
+
+                                    setAmount(value);
+                                }}
+                                onKeyDown={(e) => {
+                                    // Block spacebar key completely
+                                    if (e.key === ' ') e.preventDefault();
+                                }}
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
+
                             <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                         </div>
                     </div>
@@ -174,8 +191,12 @@ export default function EditInvoiceForm({
                                 defaultValue={transfer.note}
                                 placeholder="Enter a note"
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                                onChange={(e) => setNote(e.target.value)}
-                            />
+                                onChange={(e) => {
+                                    let value = e.target.value.toLowerCase();
+                                    // Capitalize first letter and letter after '. '
+                                    value = value.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                                    setNote(value);
+                                }}                            />
                             <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                         </div>
                     </div>
@@ -196,7 +217,12 @@ export default function EditInvoiceForm({
                                 step="0.01"
                                 defaultValue={transfer.description}
                                 placeholder="Enter a description"
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) => {
+                                    let value = e.target.value.toLowerCase();
+                                    // Capitalize first letter and letter after '. '
+                                    value = value.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                                    setDescription(value);
+                                }}
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                             <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />

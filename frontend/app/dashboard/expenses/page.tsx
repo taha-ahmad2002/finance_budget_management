@@ -43,9 +43,6 @@ export default function Page() {
             <Suspense fallback={<InvoicesTableSkeleton />}>
                 <Table expenses={expenses} />
             </Suspense>
-            {/*  <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <Table query={query} currentPage={currentPage} />
-      </Suspense> */}
         </div>
     );
 }

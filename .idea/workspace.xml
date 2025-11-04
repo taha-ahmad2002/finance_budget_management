@@ -4,33 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="dashboard card colors">
-      <change beforePath="$PROJECT_DIR$/.idea/Finance and budget management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Finance and budget management.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e068023c-a5e3-4405-867b-8ee9d0d42b44" name="Changes" comment="current month and day amounts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/finance.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/finance.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/authentication/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/authentication/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/authentication/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/authentication/signup/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/(overview)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/(overview)/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/expenses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/expenses/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/incomes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/incomes/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/dashboard/transfers/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/dashboard/transfers/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/lib/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/lib/placeholder-data.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/acme-logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/acme-logo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/dashboard/cards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/dashboard/cards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/lib/data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/lib/definitions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/definitions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/lib/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/query/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/seed/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/dashboard/latest-invoices.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/dashboard/revenue-chart.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/ui/expenses/create-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/create-form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/ui/expenses/edit-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/edit-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/expenses/pagination.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/expenses/status.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/ui/expenses/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/expenses/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/incomes/create-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/incomes/create-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/incomes/edit-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/incomes/edit-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/login-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/transfers/create-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/transfers/create-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/ui/transfers/edit-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/ui/transfers/edit-form.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +131,7 @@
       <workItem from="1762000553846" duration="7373000" />
       <workItem from="1762061959218" duration="23919000" />
       <workItem from="1762103988762" duration="7716000" />
-      <workItem from="1762232965160" duration="19198000" />
+      <workItem from="1762232965160" duration="23629000" />
     </task>
     <task id="LOCAL-00001" summary="frontend in the middle">
       <option name="closed" value="true" />
@@ -214,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762174688826</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="current month and day amounts">
+      <option name="closed" value="true" />
+      <created>1762257808257</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1762257808257</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +269,7 @@
     <MESSAGE value="transfer, expense and income implemented" />
     <MESSAGE value="dasboard total count" />
     <MESSAGE value="dashboard card colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="dashboard card colors" />
+    <MESSAGE value="current month and day amounts" />
+    <option name="LAST_COMMIT_MESSAGE" value="current month and day amounts" />
   </component>
 </project>

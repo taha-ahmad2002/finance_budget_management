@@ -86,7 +86,7 @@ def get_today_expenses_amount(db:Session = Depends(get_db),current_user: User = 
         )
         .scalar()
     )
-    return total_amount
+    return total_amount or 0
 
 @app.get('/incomes/today')
 def get_today_incomes_amount(db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
@@ -166,7 +166,7 @@ def get_this_month_expense_amount(db: Session = Depends(get_db), current_user: U
 @app.get("/expenses/",response_model=list[ExpenseOut])
 def get_expenses(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     expenses = db.query(Expense).filter(Expense.user_id == current_user.id).all()
-    return expenses or 0
+    return expenses
 
 
 @app.put("/expenses/{expense_id}",response_model=ExpenseOut)
