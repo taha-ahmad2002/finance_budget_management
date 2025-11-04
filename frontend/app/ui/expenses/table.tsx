@@ -1,4 +1,3 @@
-import InvoiceStatus from '@/app/ui/expenses/status';
 import { formatDateToLocal } from '@/app/lib/utils';
 import {Expense} from "@/app/lib/definitions";
 import { TrashIcon} from "@heroicons/react/24/outline";
@@ -52,7 +51,6 @@ export default function Table({expenses}: {
                                         <p className="text-lg font-semibold text-gray-900">{expense.note}</p>
                                         <p className="text-sm text-gray-500">{expense.description}</p>
                                     </div>
-                                    <InvoiceStatus status={expense.account} />
                                 </div>
                                 <div className="flex w-full items-center justify-between px-4 py-3">
                                     <div>

@@ -67,7 +67,6 @@ export default function EditInvoiceForm({
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault(); // ✅ prevent page reload
         try {
-            const created_at = getFormattedDate();
             await updateExpense({
                 id: expense.id,
                 amount: amount || expense.amount,

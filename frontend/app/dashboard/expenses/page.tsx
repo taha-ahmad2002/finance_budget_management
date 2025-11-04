@@ -1,5 +1,4 @@
 'use client'
-import Pagination from '@/app/ui/expenses/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/expenses/table';
 import {CreateExpense} from '@/app/ui/buttons';
@@ -13,12 +12,9 @@ import { useRouter } from "next/navigation";
 export default function Page() {
     const [expenses, setExpenses] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState('');
     const router = useRouter();
 
-    // const searchParams = await props.searchParams;
-    // const query = searchParams?.query || '';
-    // const currentPage = Number(searchParams?.page) || 1;
+
     async function fetchExpenses() {
         try {
             const data = await getExpenses();
@@ -50,9 +46,6 @@ export default function Page() {
             {/*  <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense> */}
-            <div className="mt-5 flex w-full justify-center">
-                <Pagination totalPages={7} />
-            </div>
         </div>
     );
 }

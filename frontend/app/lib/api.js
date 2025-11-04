@@ -86,3 +86,33 @@ export async function deleteTransfer(transferId) {
 }
 
 
+
+
+export const getDayIncomeAmount = async () => {
+    const res = await API.get("/incomes/today");
+    return res.data;
+};
+export const getDayExpenseAmount = async () => {
+    const res = await API.get("/expenses/today");
+    return res.data;
+};
+export const getDayTransferAmount = async () => {
+    const res = await API.get("/transfers/today");
+    return res.data;
+};
+
+
+
+
+export const getMonthIncomeAmount = async () => {
+    const res = await API.get("/incomes/thismonth");
+    return res.data;
+};
+export const getMonthExpenseAmount = async () => {
+    const res = await API.get("/expenses/thismonth");
+    return res.data;
+};
+export const getMonthTransferAmount = async () => {
+    const res = await API.get("/transfers/thismonth");
+    return res.data;
+};

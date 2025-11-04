@@ -26,7 +26,7 @@ export default function Page() {
             , made for finance and budget tracking and management.
           </p>
           <Link
-            href="/login"
+            href="/authentication/login"
             className="flex items-center gap-5 self-start rounded-lg bg-orange-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
           >
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />

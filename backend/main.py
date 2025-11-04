@@ -13,7 +13,12 @@ from auth import (
     get_current_user,
     get_user_by_email,
 )
+from datetime import datetime,date
+from sqlalchemy import func
 
+
+
+current_datetime = datetime.now()
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 # Create database tables
@@ -70,11 +75,98 @@ def create_expense(expense: ExpenseCreate, db: Session = Depends(get_db), curren
     db.refresh(new_expense)
     return new_expense
 
+@app.get('/expenses/today')
+def get_today_expenses_amount(db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+    today_date=str(date.today().isoformat())
+    total_amount = (
+        db.query(func.sum(Expense.amount))
+        .filter(
+            Expense.user_id == current_user.id,
+            func.date(Expense.created_at) == today_date  # compare only date part
+        )
+        .scalar()
+    )
+    return total_amount
+
+@app.get('/incomes/today')
+def get_today_incomes_amount(db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+    today_date=str(date.today().isoformat())
+    total_amount = (
+        db.query(func.sum(Income.amount))
+        .filter(
+            Income.user_id == current_user.id,
+            func.date(Income.created_at) == today_date  # compare only date part
+        )
+        .scalar()
+    )
+    return total_amount or 0
+
+@app.get('/transfers/today')
+def get_today_transfer_amount(db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+    today_date=str(date.today().isoformat())
+    total_amount = (
+        db.query(func.sum(Transfer.amount))
+        .filter(
+            Transfer.user_id == current_user.id,
+            func.date(Transfer.created_at) == today_date  # compare only date part
+        )
+
+        .scalar()
+    )
+    return total_amount or 0
+
+
+@app.get('/transfers/thismonth')
+def get_this_month_transfer_amount(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    today_month = str(date.today().month)
+    today_year = str(date.today().year)
+    total_amount = (
+        db.query(func.sum(Transfer.amount))
+        .filter(
+            Transfer.user_id == current_user.id,
+            func.extract('month', Transfer.created_at) == today_month,
+            func.extract('year', Transfer.created_at) == today_year
+        )
+        .scalar()
+    )
+    return total_amount or 0
+
+@app.get('/incomes/thismonth')
+def get_this_month_income_amount(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    today_month = str(date.today().month)
+    today_year = str(date.today().year)
+    total_amount = (
+        db.query(func.sum(Income.amount))
+        .filter(
+            Income.user_id == current_user.id,
+            func.extract('month', Income.created_at) == today_month,
+            func.extract('year', Income.created_at) == today_year
+        )
+        .scalar()
+    )
+    return total_amount or 0
+
+@app.get('/expenses/thismonth')
+def get_this_month_expense_amount(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    today_month = str(date.today().month)
+    today_year = str(date.today().year)
+    total_amount = (
+        db.query(func.sum(Expense.amount))
+        .filter(
+            Expense.user_id == current_user.id,
+            func.extract('month', Expense.created_at) == today_month,
+            func.extract('year', Expense.created_at) == today_year
+        )
+        .scalar()
+    )
+    return total_amount or 0
+
+
 
 @app.get("/expenses/",response_model=list[ExpenseOut])
 def get_expenses(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     expenses = db.query(Expense).filter(Expense.user_id == current_user.id).all()
-    return expenses
+    return expenses or 0
 
 
 @app.put("/expenses/{expense_id}",response_model=ExpenseOut)
@@ -213,3 +305,5 @@ def logout(response: Response):
 def get_transfer_by_id(transfer_id:int, db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
     transfer=db.query(Transfer).filter(Transfer.id==transfer_id, Transfer.user_id == current_user.id).first()
     return transfer
+
+

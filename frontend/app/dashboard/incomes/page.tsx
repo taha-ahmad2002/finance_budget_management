@@ -1,5 +1,4 @@
 'use client'
-import Pagination from '@/app/ui/expenses/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/incomes/table';
 import { CreateIncome } from '@/app/ui/buttons';
@@ -50,9 +49,6 @@ export default function Page() {
             {/*  <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense> */}
-            <div className="mt-5 flex w-full justify-center">
-                <Pagination totalPages={7} />
-            </div>
         </div>
     );
 }

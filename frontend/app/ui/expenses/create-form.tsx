@@ -1,11 +1,7 @@
 'use client'
 import Link from 'next/link';
-import {
-  CurrencyDollarIcon,
-  UserCircleIcon,
-    PaperClipIcon
-} from '@heroicons/react/24/outline';
-import { Button } from '@/app/ui/button';
+import {CurrencyDollarIcon, PaperClipIcon, UserCircleIcon} from '@heroicons/react/24/outline';
+import {Button} from '@/app/ui/button';
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 import {createExpense} from "@/app/lib/api";
@@ -13,8 +9,7 @@ import {createExpense} from "@/app/lib/api";
 
 function getFormattedDate() {
     const date = new Date();
-    const iso = date.toISOString(); // e.g. 2025-10-31T12:03:25.969Z
-    return iso.substring(0, iso.length - 1) + '000'; // remove 'Z', add 000
+    return date.toISOString().split('T')[0];
 }
 export default function Form() {
 
@@ -30,7 +25,6 @@ export default function Form() {
         e.preventDefault();
         try {
             const created_at =getFormattedDate();
-            console.log(created_at);
             await createExpense({
                 category: category.toString(),         // Ensure correct type
                 account: account.toString(),           // or rename to account_id if backend expects that
@@ -103,6 +97,8 @@ export default function Form() {
             name: "Accounts"
         }
     ]
+
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
