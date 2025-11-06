@@ -48,11 +48,39 @@ export default function EditInvoiceForm({
         },
         {
             id:3,
-            name: "bills"
+            name: "Apparel"
         },
         {
             id:4,
-            name: "loan payment"
+            name: "Health"
+        },
+        {
+            id:5,
+            name: "Culture"
+        },
+        {
+            id:6,
+            name: "Gift"
+        },
+        {
+            id:7,
+            name: "Household"
+        },
+        {
+            id:8,
+            name: "Transport"
+        },
+        {
+            id:9,
+            name: "Pets"
+        },
+        {
+            id:10,
+            name: "Education"
+        },
+        {
+            id:11,
+            name: "Others"
         }
     ];
 

@@ -52,7 +52,7 @@ export default function Form() {
         },
         {
             id:3,
-            name: "Apparal"
+            name: "Apparel"
         },
         {
             id:4,
@@ -81,6 +81,10 @@ export default function Form() {
         {
             id:10,
             name: "Education"
+        },
+        {
+            id:11,
+            name: "Others"
         }
     ];
     const accounts=[
