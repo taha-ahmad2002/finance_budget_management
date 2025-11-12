@@ -48,7 +48,7 @@ export default function EditInvoiceForm({
         },
         {
             id:3,
-            name: "Petty Cash"
+            name: "Petty cash"
         },
         {
             id:4,

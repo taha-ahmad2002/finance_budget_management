@@ -116,3 +116,24 @@ export const getMonthTransferAmount = async () => {
     const res = await API.get("/transfers/thismonth");
     return res.data;
 };
+
+
+
+export const getTodayCategoryExpenseAmount = async () => {
+    const res = await API.get("/expenses/today/cat");
+    return res.data;
+}
+export const getTodayCategoryIncomeAmount = async () => {
+    const res = await API.get("/incomes/today/cat");
+    return res.data;
+}
+
+
+export const getMonthCategoryExpenseAmount = async () => {
+    const res = await API.get("/expenses/thismonth/cat");
+    return res.data;
+}
+export const getMonthCategoryIncomeAmount = async () => {
+    const res = await API.get("/incomes/thismonth/cat");
+    return res.data;
+}

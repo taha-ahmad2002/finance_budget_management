@@ -61,6 +61,10 @@ export default function Form() {
         {
             id:4,
             name: "Bonus"
+        },
+        {
+            id:5,
+            name: "Other"
         }
     ];
     const accounts=[
