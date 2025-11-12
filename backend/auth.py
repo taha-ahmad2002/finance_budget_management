@@ -26,6 +26,7 @@ def verify_password(plain, hashed):
     return pwd_context.verify(plain, hashed)
 
 
+
 # ------------------- TOKEN UTILS -------------------
 def create_access_token(data: dict, expires_delta=None):
     to_encode = data.copy()
