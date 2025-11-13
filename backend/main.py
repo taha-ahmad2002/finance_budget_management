@@ -21,6 +21,7 @@ from sqlalchemy import func
 current_datetime = datetime.now()
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
+
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
@@ -28,11 +29,15 @@ app = FastAPI(title="Todo List API with SQLAlchemy + JWT")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # your Next.js app URL
-    allow_credentials=True,                   # allow cookies
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
+
 
 # ------------------- AUTH ROUTES -------------------
 @app.post("/signup", response_model=dict)
@@ -60,7 +65,7 @@ def login( response: Response,form_data: OAuth2PasswordRequestForm = Depends(), 
         httponly=True,
         secure=True,
         max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
-        samesite="none"  # "strict" or "none" for cross-site
+        samesite="none"
     )
     # response.headers["Authorization"] = f"Bearer {access_token}"
     return {"access_token": access_token, "token_type": "bearer"}
@@ -114,6 +119,84 @@ def get_today_transfer_amount(db:Session = Depends(get_db),current_user: User = 
         .scalar()
     )
     return total_amount or 0
+
+
+@app.get('/expenses/today/cat')
+def today_expense_by_category(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    today_date = str(date.today().isoformat())
+    results = (
+        db.query(Expense.category, func.sum(Expense.amount).label("total"))
+        .filter(
+            Expense.user_id == current_user.id,
+            func.date(Expense.created_at) == today_date
+        )
+        .group_by(Expense.category)
+        .all()
+    )
+    return [{ cat: total} for cat, total in results]
+
+
+@app.get('/incomes/today/cat')
+def today_income_by_category(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    today_date = str(date.today().isoformat())
+
+    results = (
+        db.query(Income.category, func.sum(Income.amount).label("total"))
+        .filter(
+            Income.user_id == current_user.id,
+            func.date(Income.created_at) == today_date
+        )
+        .group_by(Income.category)
+        .all()
+    )
+    return [{ cat: total} for cat, total in results]
+
+
+
+@app.get('/expenses/thismonth/cat')
+def month_expense_by_category(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    today_month = str(date.today().month);
+    today_year = str(date.today().year);
+    results = (
+        db.query(Expense.category, func.sum(Expense.amount).label("total"))
+        .filter(
+            Expense.user_id == current_user.id,
+            func.extract('month', Income.created_at) == today_month,
+            func.extract('year', Income.created_at) == today_year
+        )
+        .group_by(Expense.category)
+        .all()
+    )
+    return [{ cat: total} for cat, total in results]
+
+@app.get('/incomes/thismonth/cat')
+def month_income_by_category(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    today_month = str(date.today().month);
+    today_year = str(date.today().year);
+    results = (
+        db.query(Income.category, func.sum(Income.amount).label("total"))
+        .filter(
+            Income.user_id == current_user.id,
+            func.extract('month', Income.created_at) == today_month,
+            func.extract('year', Income.created_at) == today_year
+        )
+        .group_by(Income.category)
+        .all()
+    )
+    return [{ cat: total} for cat, total in results]
+
 
 
 @app.get('/transfers/thismonth')
@@ -305,5 +388,8 @@ def logout(response: Response):
 def get_transfer_by_id(transfer_id:int, db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
     transfer=db.query(Transfer).filter(Transfer.id==transfer_id, Transfer.user_id == current_user.id).first()
     return transfer
+
+
+
 
 
