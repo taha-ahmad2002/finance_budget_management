@@ -8,7 +8,7 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { signup } from '@/app/lib/api';
 import Link from "next/link";
 
@@ -21,7 +21,7 @@ export default function SignupForm() {
     async function handleSignup(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         try {
-            await signup(email, password);
+            await signup(email, password,false);
             setMessage('Signup successful! You can now log in.');
             router.push('/authentication/login');
         } catch (err) {

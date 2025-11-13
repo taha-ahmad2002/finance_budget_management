@@ -5,8 +5,8 @@ const API = axios.create({
     withCredentials: true, // crucial for cookies
 });
 
-export const signup = async (email, password) => {
-    await API.post("/signup", { email, password });
+export const signup = async (email, password,is_admin) => {
+    await API.post("/signup", { email, password ,is_admin});
 };
 
 export const login = async (email, password) => {

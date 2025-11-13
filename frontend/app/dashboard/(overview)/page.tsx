@@ -45,8 +45,9 @@ export default function Page() {
             legend: {
                 position: "bottom" as const,
                 labels: {
-                    font: { size: 1 },
+                    font: { size: 12 },
                     color: "#374151",
+                    padding: 10,
                 },
             },
         },
